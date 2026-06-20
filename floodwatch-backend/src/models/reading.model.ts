@@ -16,7 +16,7 @@ export interface IReading extends Document {
 const ReadingSchema = new Schema<IReading>(
   {
     location: { type: String, required: true, trim: true },
-    rainIntensity: { type: Number, required: true, min: 0, max: 1023 },
+    rainIntensity: { type: Number, required: true, min: 0, max: 1024 },
     distanceCm: { type: Number, required: true, min: 0 },
     containerHeightCm: { type: Number, required: true, min: 1 },
     waterLevelCm: { type: Number, required: true, min: 0 },

@@ -1,12 +1,12 @@
 #pragma once
 
-#define WIFI_SSID "YOUR_WIFI_SSID"
-#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
+#define WIFI_SSID "Wirespot"
+#define WIFI_PASSWORD "W12345678T"
 
-#define API_HOST "your-app.onrender.com"
+#define API_HOST "floodwatch-be.onrender.com"
 #define API_PORT 443
-#define API_ENDPOINT "/api/v1/readings"
-#define API_KEY "your_hardware_api_key_here"
+#define API_ENDPOINT "/api/readings"
+#define API_KEY "fw_4e8a1f3c9b2d6e0f5a7c3b8d1e4f2a9c"
 
 #define PIN_RAIN_SENSOR A0
 #define PIN_TRIG D6

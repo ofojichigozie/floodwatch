@@ -37,7 +37,7 @@ void blinkLED(int times, int delayMs = 150) {
 }
 
 int readRainSensor() {
-  return analogRead(PIN_RAIN_SENSOR);  // 0 (wet) – 1023 (dry)
+  return analogRead(PIN_RAIN_SENSOR);  // 0 (wet) – 1023/1024 (dry)
 }
 
 float readDistanceCm() {
