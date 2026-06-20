@@ -26,7 +26,7 @@ MODERATE_THRESHOLD_PCT = 0.45 # 45% full → moderate risk
 
 def label(rain_intensity: int, water_level_cm: float, container_height_cm: float) -> str:
     fill_ratio = water_level_cm / container_height_cm
-    rain_norm = rain_intensity / 1023.0  # normalise 0–1023 ADC to 0–1
+    rain_norm = rain_intensity / 1024.0  # normalise 0–1024 ADC to 0–1
 
     if fill_ratio >= FLOOD_THRESHOLD_PCT or (fill_ratio >= 0.60 and rain_norm >= 0.7):
         return "high"

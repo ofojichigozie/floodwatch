@@ -31,7 +31,7 @@ def predict(rain_intensity: float, water_level_cm: float, container_height_cm: f
 
     Parameters
     ----------
-    rain_intensity     : 0–1023 ADC value from rain sensor
+    rain_intensity     : 0–1024 ADC value from rain sensor
     water_level_cm     : computed water level (containerHeight - distance)
     container_height_cm: total height of the container
 
