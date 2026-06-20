@@ -113,7 +113,7 @@ void sendReading(int rainIntensity, float distanceCm) {
 }
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   delay(100);
 
   pinMode(PIN_TRIG, OUTPUT);
