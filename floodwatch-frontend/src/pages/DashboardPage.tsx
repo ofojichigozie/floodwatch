@@ -9,6 +9,7 @@ import { ReadingsTable } from '../components/ReadingsTable';
 import { AlertBanner, SystemStatus } from '../components/AlertBanner';
 import { AppLayout } from '../components/AppLayout';
 import { Reading } from '../types';
+import { formatRainPercent } from '../utils/readings';
 
 const DashboardPage = () => {
   const { readings, loading, deleteReading, addReading, refetch } = useReadings();
@@ -104,9 +105,9 @@ const DashboardPage = () => {
           />
           <StatCard
             label="Avg Rain Intensity"
-            value={stats.avgRain.toFixed(0)}
+            value={formatRainPercent(stats.avgRain)}
             icon={<CloudRain size={20} />}
-            sub="0–1023 ADC scale"
+            sub="0–100%"
             accent="amber"
           />
         </div>

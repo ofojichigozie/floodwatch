@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import type { Reading } from '../types';
+import { toRainPercent } from '../utils/readings';
 
 interface Props {
   readings: Reading[];
@@ -24,7 +25,7 @@ export const ReadingsChart = ({ readings }: Props) => {
         minute: '2-digit',
       }),
       waterLevel: parseFloat(r.waterLevelCm.toFixed(1)),
-      rainIntensity: parseFloat((r.rainIntensity / 10.23).toFixed(1)), // normalize to 0-100
+      rainIntensity: toRainPercent(r.rainIntensity),
     }));
 
   if (data.length === 0) {

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Trash2, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { Reading } from '../types';
+import { formatRainPercent } from '../utils/readings';
 import { RiskBadge } from './RiskBadge';
 
 interface Props {
@@ -73,7 +74,9 @@ export const ReadingsTable = ({ readings, onDelete }: Props) => {
                   {r.waterLevelCm.toFixed(1)}{' '}
                   <span className="text-slate-400">/ {r.containerHeightCm} cm</span>
                 </td>
-                <td className="px-5 py-3.5 text-right text-slate-600">{r.rainIntensity}</td>
+                <td className="px-5 py-3.5 text-right text-slate-600">
+                  {formatRainPercent(r.rainIntensity)}
+                </td>
                 <td className="px-5 py-3.5 text-right">
                   <span
                     className={`font-semibold ${

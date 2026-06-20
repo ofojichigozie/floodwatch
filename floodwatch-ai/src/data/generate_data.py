@@ -26,7 +26,7 @@ MODERATE_THRESHOLD_PCT = 0.45 # 45% full → moderate risk
 
 def label(rain_intensity: int, water_level_cm: float, container_height_cm: float) -> str:
     fill_ratio = water_level_cm / container_height_cm
-    rain_norm = rain_intensity / 1024.0  # normalise 0–1024 ADC to 0–1
+    rain_norm = 1.0 - (rain_intensity / 1024.0)
 
     if fill_ratio >= FLOOD_THRESHOLD_PCT or (fill_ratio >= 0.60 and rain_norm >= 0.7):
         return "high"
@@ -47,9 +47,9 @@ def build_training_samples(sample_count: int = 300, seed: int = 42) -> list[dict
     """Build balanced synthetic training samples from flood-risk thresholds."""
     rng = np.random.default_rng(seed)
     groups = [
-        ("low", 0.00, 0.35, 0, 250),
-        ("moderate", 0.25, 0.65, 250, 650),
-        ("high", 0.55, 1.00, 650, 1023),
+        ("low",      0.00, 0.35, 700, 1023),
+        ("moderate", 0.25, 0.65, 300, 700),
+        ("high",     0.55, 1.00, 0,   300),
     ]
 
     base = sample_count // 3
@@ -64,13 +64,13 @@ def build_training_samples(sample_count: int = 300, seed: int = 42) -> list[dict
 
             if risk_label == "low" and rng.random() < 0.10:
                 water_level_cm = float(rng.uniform(0.10 * H, 0.40 * H))
-                rain_intensity = int(rng.integers(0, 180))
+                rain_intensity = int(rng.integers(800, 1024))
             elif risk_label == "moderate" and rng.random() < 0.10:
                 water_level_cm = float(rng.uniform(0.30 * H, 0.70 * H))
                 rain_intensity = int(rng.integers(300, 700))
             elif risk_label == "high" and rng.random() < 0.10:
                 water_level_cm = float(rng.uniform(0.65 * H, H))
-                rain_intensity = int(rng.integers(700, 1024))
+                rain_intensity = int(rng.integers(0, 180))
 
             records.append({
                 "rain_intensity": rain_intensity,
