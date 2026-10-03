@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 import { Admin } from '../types';
 
 interface AuthContextType {
@@ -12,17 +12,17 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [admin, setAdmin] = useState<Admin | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem('fw_token');
+  const [token, setToken] = useState<string | null>(() => localStorage.getItem('fw_token'));
+  const [admin, setAdmin] = useState<Admin | null>(() => {
     const storedAdmin = localStorage.getItem('fw_admin');
-    if (storedToken && storedAdmin) {
-      setToken(storedToken);
-      setAdmin(JSON.parse(storedAdmin));
+    if (!storedAdmin) return null;
+
+    try {
+      return JSON.parse(storedAdmin) as Admin;
+    } catch {
+      return null;
     }
-  }, []);
+  });
 
   const login = (token: string, admin: Admin) => {
     localStorage.setItem('fw_token', token);
