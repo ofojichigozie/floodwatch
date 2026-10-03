@@ -19,7 +19,7 @@ import numpy as np
 import pandas as pd
 
 # ── EDIT THESE TO MATCH YOUR PHYSICAL SETUP ─────────────────────────────────
-CONTAINER_HEIGHT_CM = 30      # Total height of your container/monitored area
+CONTAINER_HEIGHT_CM = 12      # Total height of your container/monitored area
 FLOOD_THRESHOLD_PCT = 0.75    # 75% full → high risk
 MODERATE_THRESHOLD_PCT = 0.45 # 45% full → moderate risk
 # ─────────────────────────────────────────────────────────────────────────────

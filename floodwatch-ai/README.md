@@ -34,7 +34,7 @@ The API will run at **http://localhost:8000**
 Before generating data, open `src/data/generate_data.py` and edit:
 
 ```python
-CONTAINER_HEIGHT_CM = 30      # ← set to your actual container height
+CONTAINER_HEIGHT_CM = 12      # ← set to your actual container height
 FLOOD_THRESHOLD_PCT = 0.75    # 75% full = high risk
 MODERATE_THRESHOLD_PCT = 0.45 # 45% full = moderate risk
 ```
